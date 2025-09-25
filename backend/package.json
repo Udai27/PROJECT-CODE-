@@ -1,0 +1,26 @@
+{
+  "name": "rockguard-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@serialport/parser-readline": "^13.0.0",
+    "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "node-fetch": "^2.7.0",
+    "serialport": "^13.0.0",
+    "twilio": "^5.10.1",
+    "ws": "^8.18.3"
+  },
+  "description": "",
+  "main": "Server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

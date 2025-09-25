@@ -1,0 +1,501 @@
+WorkerID,Name,Age,Role,Zone,Shift,HealthStatus,PPE_Status,Experience_Years,Contact
+W0001,Kabir Ghosh,23,Technician,Zone E,Day,Fit,Partial,3,-6480822608
+W0002,Pari Singh,31,Geologist,Zone C,Night,Minor Injury,Complete,17,-7715575049
+W0003,Rohan Verma,32,Engineer,Zone C,Day,Minor Injury,Partial,22,-9007333005
+W0004,Ira Patel,52,Engineer,Zone A,Night,Minor Injury,Complete,15,-9175392028
+W0005,Riya Das,50,Safety Officer,Zone D,Day,Fit,Complete,7,-8484363797
+W0006,Anvi Joshi,48,Safety Officer,Zone B,Night,Minor Injury,Partial,10,-6118096291
+W0007,Reyansh Reddy,39,Geologist,Zone B,Night,Fit,Complete,15,-6795581029
+W0008,Reyansh Das,47,Technician,Zone B,Night,Minor Injury,Partial,20,-7608056540
+W0009,Ananya Shetty,22,Safety Officer,Zone E,Night,Fit,Missing,21,-9839625239
+W0010,Reyansh Iyer,53,Geologist,Zone B,Day,Fatigue,Missing,12,-9251279999
+W0011,Pihu Reddy,46,Technician,Zone A,Day,Fatigue,Complete,15,-8962826104
+W0012,Aditya Verma,47,Geologist,Zone D,Night,Fit,Complete,13,-9800846697
+W0013,Krishna Chopra,55,Engineer,Zone B,Day,Major Injury,Partial,13,-9148810354
+W0014,Sai Yadav,45,Safety Officer,Zone D,Day,Fatigue,Complete,5,-7005239509
+W0015,Meera Gupta,25,Miner,Zone C,Day,Fit,Missing,14,-9712309660
+W0016,Pari Mehta,54,Technician,Zone E,Day,Fit,Missing,4,-9885326419
+W0017,Sai Das,25,Miner,Zone C,Day,Fit,Complete,2,-9827794543
+W0018,Pari Pillai,29,Technician,Zone E,Day,Major Injury,Missing,23,-7522902860
+W0019,Meera Mehta,53,Miner,Zone B,Day,Minor Injury,Missing,1,-8495673426
+W0020,Arjun Rao,30,Technician,Zone C,Day,Fatigue,Complete,5,-9240668830
+W0021,Riya Joshi,37,Safety Officer,Zone D,Day,Fit,Missing,10,-7408024255
+W0022,Saanvi Joshi,42,Supervisor,Zone E,Day,Fit,Partial,10,-7371768236
+W0023,Atharv Yadav,28,Technician,Zone D,Day,Fit,Missing,5,-7773973748
+W0024,Pranav Das,47,Geologist,Zone C,Night,Fatigue,Missing,5,-8166272655
+W0025,Arjun Verma,45,Miner,Zone A,Night,Fit,Partial,22,-9000604583
+W0026,Pranav Gupta,51,Geologist,Zone D,Night,Minor Injury,Partial,21,-9715140750
+W0027,Diya Shetty,33,Supervisor,Zone C,Night,Fatigue,Partial,17,-6947869610
+W0028,Pihu Das,35,Geologist,Zone B,Night,Fit,Missing,15,-6125345577
+W0029,Navya Rao,47,Safety Officer,Zone E,Night,Major Injury,Missing,13,-8556206112
+W0030,Rohan Mishra,52,Safety Officer,Zone B,Night,Fit,Partial,22,-7134087292
+W0031,Vihaan Joshi,31,Supervisor,Zone E,Day,Fit,Complete,13,-8536721654
+W0032,Saanvi Nair,31,Technician,Zone B,Night,Minor Injury,Partial,14,-6228122439
+W0033,Krishna Ghosh,52,Geologist,Zone C,Night,Fatigue,Partial,2,-6211423373
+W0034,Shaurya Yadav,21,Technician,Zone E,Day,Fatigue,Missing,18,-8629042125
+W0035,Vivaan Roy,35,Supervisor,Zone A,Day,Fit,Partial,17,-9943240964
+W0036,Vivaan Sharma,44,Safety Officer,Zone E,Day,Minor Injury,Missing,8,-9038505199
+W0037,Aarav Sharma,22,Engineer,Zone C,Night,Fit,Partial,8,-8234931565
+W0038,Khushi Mehta,26,Miner,Zone A,Day,Fit,Partial,17,-8386438074
+W0039,Ira Mishra,29,Engineer,Zone A,Night,Major Injury,Missing,19,-9949484942
+W0040,Meera Rao,49,Engineer,Zone D,Day,Major Injury,Partial,1,-7555891355
+W0041,Pari Iyer,26,Safety Officer,Zone C,Night,Major Injury,Partial,5,-7902593150
+W0042,Rudra Sharma,46,Safety Officer,Zone E,Day,Major Injury,Partial,8,-7875192094
+W0043,Pari Kumar,28,Geologist,Zone C,Day,Fit,Partial,10,-6134258773
+W0044,Kabir Singh,27,Engineer,Zone A,Night,Major Injury,Missing,14,-9805865666
+W0045,Diya Shetty,49,Miner,Zone D,Night,Major Injury,Missing,21,-8487641022
+W0046,Saanvi Patel,23,Safety Officer,Zone D,Night,Fit,Missing,9,-6288435489
+W0047,Ananya Mishra,21,Safety Officer,Zone D,Night,Minor Injury,Complete,1,-7637535135
+W0048,Arjun Verma,32,Miner,Zone B,Night,Fit,Partial,6,-9788776975
+W0049,Vihaan Reddy,53,Miner,Zone C,Night,Minor Injury,Missing,12,-9636843548
+W0050,Pihu Mehta,51,Geologist,Zone A,Night,Major Injury,Missing,13,-7377341929
+W0051,Myra Sharma,50,Miner,Zone A,Day,Minor Injury,Partial,24,-7812209014
+W0052,Ira Shetty,54,Safety Officer,Zone A,Night,Minor Injury,Complete,7,-6391665307
+W0053,Anvi Patel,37,Technician,Zone C,Day,Major Injury,Partial,17,-9456710901
+W0054,Reyansh Kulkarni,23,Geologist,Zone D,Day,Fatigue,Complete,6,-8110198641
+W0055,Meera Kulkarni,33,Engineer,Zone B,Day,Minor Injury,Missing,20,-8343958696
+W0056,Diya Ghosh,51,Safety Officer,Zone D,Night,Major Injury,Partial,12,-8629756584
+W0057,Aadhya Yadav,47,Technician,Zone C,Day,Major Injury,Complete,14,-7977046246
+W0058,Khushi Verma,27,Supervisor,Zone C,Night,Major Injury,Partial,9,-7384794313
+W0059,Anika Singh,45,Miner,Zone E,Day,Fatigue,Partial,12,-7267711690
+W0060,Meera Kumar,36,Safety Officer,Zone B,Day,Major Injury,Missing,17,-6940165013
+W0061,Riya Gupta,39,Supervisor,Zone E,Day,Fatigue,Partial,21,-9572169527
+W0062,Saanvi Roy,44,Engineer,Zone D,Night,Fatigue,Complete,2,-7629906083
+W0063,Ishaan Chopra,40,Safety Officer,Zone C,Night,Fatigue,Complete,11,-7838676397
+W0064,Diya Sharma,32,Safety Officer,Zone C,Night,Minor Injury,Complete,5,-8025886260
+W0065,Meera Gupta,52,Technician,Zone D,Night,Fit,Partial,12,-8667375622
+W0066,Vivaan Reddy,40,Miner,Zone A,Day,Minor Injury,Missing,25,-9947166851
+W0067,Khushi Pillai,37,Geologist,Zone A,Day,Major Injury,Complete,9,-6214210857
+W0068,Myra Singh,44,Technician,Zone C,Day,Fatigue,Complete,2,-6080511256
+W0069,Sai Agarwal,52,Technician,Zone D,Day,Minor Injury,Complete,23,-9014222626
+W0070,Rohan Mehta,36,Safety Officer,Zone D,Night,Fatigue,Partial,3,-7117826761
+W0071,Aditya Patel,50,Technician,Zone E,Day,Major Injury,Complete,18,-7002520471
+W0072,Krishna Shetty,43,Engineer,Zone E,Day,Minor Injury,Complete,1,-6752237922
+W0073,Anika Yadav,48,Technician,Zone D,Day,Major Injury,Complete,15,-7886532665
+W0074,Pihu Patel,30,Supervisor,Zone A,Night,Fit,Missing,21,-8982039911
+W0075,Shaurya Singh,41,Supervisor,Zone B,Day,Fit,Missing,23,-6642930687
+W0076,Kabir Kulkarni,20,Geologist,Zone B,Night,Fatigue,Complete,12,-8593359226
+W0077,Shaurya Mehta,29,Miner,Zone B,Night,Fatigue,Partial,16,-8172219385
+W0078,Krishna Sharma,33,Geologist,Zone E,Day,Minor Injury,Complete,21,-8837117380
+W0079,Anvi Nair,22,Safety Officer,Zone E,Day,Major Injury,Missing,19,-6923610824
+W0080,Riya Chopra,52,Supervisor,Zone B,Day,Fit,Partial,14,-7300993201
+W0081,Pari Pillai,20,Supervisor,Zone E,Night,Fit,Partial,5,-9093663050
+W0082,Meera Roy,53,Geologist,Zone E,Day,Major Injury,Missing,16,-8966127018
+W0083,Ira Nair,27,Geologist,Zone B,Night,Major Injury,Complete,21,-9819871939
+W0084,Ira Kulkarni,20,Supervisor,Zone D,Night,Major Injury,Complete,14,-8288917607
+W0085,Sai Shetty,43,Geologist,Zone C,Night,Major Injury,Missing,4,-8032089604
+W0086,Ira Yadav,55,Supervisor,Zone C,Day,Major Injury,Missing,9,-8180074138
+W0087,Aditya Agarwal,54,Miner,Zone A,Night,Fit,Partial,16,-6380041019
+W0088,Aadhya Reddy,26,Technician,Zone D,Night,Minor Injury,Complete,7,-7919580692
+W0089,Aarav Das,51,Safety Officer,Zone E,Day,Major Injury,Missing,3,-9213268361
+W0090,Ananya Kumar,26,Engineer,Zone D,Night,Minor Injury,Missing,6,-8068036603
+W0091,Sai Ghosh,49,Supervisor,Zone E,Night,Fatigue,Missing,6,-6400698118
+W0092,Reyansh Reddy,27,Engineer,Zone B,Day,Major Injury,Missing,1,-8838244468
+W0093,Sai Mehta,55,Technician,Zone A,Day,Major Injury,Partial,12,-6390413315
+W0094,Aditya Kumar,53,Safety Officer,Zone C,Night,Fatigue,Missing,21,-8546502240
+W0095,Shaurya Reddy,40,Supervisor,Zone B,Day,Minor Injury,Missing,19,-6942834324
+W0096,Meera Mehta,50,Technician,Zone A,Night,Minor Injury,Missing,25,-6501910164
+W0097,Khushi Ghosh,54,Supervisor,Zone B,Day,Minor Injury,Missing,5,-9609147810
+W0098,Saanvi Mehta,26,Safety Officer,Zone E,Day,Minor Injury,Partial,6,-6393086832
+W0099,Navya Mehta,38,Engineer,Zone E,Day,Fit,Complete,7,-6550039410
+W0100,Anvi Mehta,43,Geologist,Zone E,Day,Minor Injury,Missing,8,-8010872738
+W0101,Myra Pillai,30,Technician,Zone E,Night,Fit,Missing,25,-9150503495
+W0102,Vihaan Shetty,24,Supervisor,Zone D,Day,Minor Injury,Missing,18,-9259155006
+W0103,Ishaan Reddy,50,Geologist,Zone B,Day,Major Injury,Missing,1,-6465485866
+W0104,Vihaan Verma,25,Safety Officer,Zone B,Night,Minor Injury,Partial,1,-9369014047
+W0105,Vihaan Mehta,33,Safety Officer,Zone A,Night,Fit,Complete,15,-9568538250
+W0106,Anvi Pillai,20,Supervisor,Zone B,Day,Fit,Missing,18,-6303089277
+W0107,Meera Gupta,53,Engineer,Zone E,Night,Fatigue,Partial,11,-8220236023
+W0108,Aarohi Rao,36,Geologist,Zone D,Day,Minor Injury,Complete,21,-6594344487
+W0109,Meera Pillai,41,Miner,Zone B,Day,Minor Injury,Missing,13,-6263887867
+W0110,Ira Das,33,Geologist,Zone D,Night,Major Injury,Partial,24,-7802995805
+W0111,Kabir Mehta,24,Safety Officer,Zone E,Night,Minor Injury,Missing,6,-9473169898
+W0112,Ira Shetty,32,Safety Officer,Zone C,Night,Fit,Partial,11,-9577395654
+W0113,Aarohi Chopra,49,Engineer,Zone C,Night,Minor Injury,Missing,10,-6215082615
+W0114,Pihu Singh,20,Geologist,Zone D,Night,Fatigue,Partial,1,-6377827440
+W0115,Ira Roy,26,Safety Officer,Zone D,Day,Fatigue,Missing,7,-8759063357
+W0116,Kabir Joshi,46,Safety Officer,Zone D,Night,Fatigue,Partial,5,-7631913837
+W0117,Sai Nair,20,Geologist,Zone C,Day,Major Injury,Missing,11,-9520074048
+W0118,Vivaan Das,36,Supervisor,Zone E,Night,Fatigue,Missing,12,-7864874943
+W0119,Anika Mehta,51,Technician,Zone E,Night,Fit,Complete,12,-6135069300
+W0120,Rohan Das,51,Miner,Zone E,Night,Fatigue,Missing,10,-7205767089
+W0121,Meera Agarwal,53,Geologist,Zone E,Night,Fit,Missing,7,-6539538906
+W0122,Pari Nair,29,Geologist,Zone D,Day,Fit,Complete,23,-7560772269
+W0123,Rohan Kulkarni,30,Technician,Zone D,Night,Fatigue,Complete,4,-7823703784
+W0124,Myra Das,32,Miner,Zone E,Night,Major Injury,Partial,11,-7404532072
+W0125,Ananya Gupta,29,Miner,Zone E,Day,Major Injury,Missing,21,-6680461133
+W0126,Pari Chopra,49,Geologist,Zone C,Night,Minor Injury,Partial,17,-9798046239
+W0127,Meera Joshi,23,Technician,Zone E,Day,Major Injury,Partial,10,-8747388125
+W0128,Aditya Kulkarni,37,Geologist,Zone B,Night,Major Injury,Complete,1,-6312507084
+W0129,Vihaan Iyer,32,Safety Officer,Zone D,Night,Minor Injury,Complete,1,-7304612954
+W0130,Anvi Mehta,23,Geologist,Zone D,Night,Minor Injury,Partial,25,-8650218412
+W0131,Saanvi Verma,54,Engineer,Zone A,Night,Minor Injury,Missing,3,-9181166315
+W0132,Aadhya Singh,51,Technician,Zone B,Day,Fatigue,Complete,5,-7611172801
+W0133,Pranav Patel,22,Supervisor,Zone A,Day,Fatigue,Partial,9,-8658928575
+W0134,Aarav Kumar,55,Technician,Zone A,Night,Major Injury,Missing,24,-7785688724
+W0135,Anika Yadav,45,Technician,Zone E,Night,Fatigue,Complete,4,-9807548508
+W0136,Khushi Das,20,Engineer,Zone A,Day,Fit,Missing,4,-8261274354
+W0137,Ananya Kumar,50,Geologist,Zone E,Night,Fatigue,Missing,16,-8969128025
+W0138,Navya Das,40,Engineer,Zone B,Night,Major Injury,Partial,7,-6257279559
+W0139,Meera Patel,23,Safety Officer,Zone E,Night,Minor Injury,Complete,5,-7063070894
+W0140,Atharv Mishra,46,Supervisor,Zone E,Night,Fatigue,Missing,4,-8718610877
+W0141,Aarohi Yadav,25,Engineer,Zone B,Night,Major Injury,Complete,11,-9772839829
+W0142,Aarohi Ghosh,52,Geologist,Zone E,Day,Major Injury,Complete,3,-8834808713
+W0143,Krishna Nair,40,Supervisor,Zone D,Night,Fit,Complete,16,-6236759741
+W0144,Rudra Roy,32,Supervisor,Zone E,Day,Major Injury,Complete,2,-9836763358
+W0145,Kabir Patel,29,Safety Officer,Zone C,Day,Major Injury,Partial,21,-8233787204
+W0146,Pihu Joshi,36,Supervisor,Zone A,Day,Fit,Partial,16,-8856597122
+W0147,Aditya Verma,51,Miner,Zone C,Night,Fatigue,Missing,6,-9846763049
+W0148,Krishna Joshi,29,Technician,Zone D,Night,Fatigue,Missing,21,-7218381850
+W0149,Arjun Rao,27,Geologist,Zone C,Night,Fatigue,Complete,8,-8396963974
+W0150,Ishaan Gupta,45,Engineer,Zone C,Day,Fatigue,Missing,17,-6714744095
+W0151,Rudra Mishra,25,Supervisor,Zone B,Night,Fit,Missing,11,-6884286226
+W0152,Khushi Nair,21,Geologist,Zone C,Night,Fit,Complete,24,-7009413520
+W0153,Anika Nair,24,Safety Officer,Zone B,Night,Fit,Partial,4,-7050647164
+W0154,Vihaan Reddy,28,Technician,Zone B,Night,Fatigue,Complete,1,-6459654548
+W0155,Ishaan Shetty,33,Miner,Zone E,Day,Fatigue,Partial,7,-8326563074
+W0156,Krishna Nair,33,Safety Officer,Zone A,Day,Major Injury,Partial,4,-9648040149
+W0157,Saanvi Rao,46,Geologist,Zone B,Night,Fit,Missing,11,-6295400231
+W0158,Ishaan Mehta,51,Technician,Zone C,Day,Major Injury,Complete,21,-7165417580
+W0159,Ananya Patel,38,Supervisor,Zone B,Night,Minor Injury,Missing,15,-9135568193
+W0160,Vivaan Nair,28,Safety Officer,Zone A,Night,Minor Injury,Missing,8,-9772481317
+W0161,Pranav Roy,53,Supervisor,Zone A,Day,Minor Injury,Complete,13,-9503461600
+W0162,Anvi Mehta,26,Supervisor,Zone A,Night,Fit,Missing,15,-8111905838
+W0163,Myra Chopra,38,Safety Officer,Zone D,Night,Major Injury,Missing,22,-6763468714
+W0164,Saanvi Iyer,20,Miner,Zone C,Night,Fit,Partial,14,-8000173527
+W0165,Shaurya Yadav,51,Supervisor,Zone B,Day,Major Injury,Complete,20,-6733869554
+W0166,Pranav Iyer,25,Supervisor,Zone C,Day,Fit,Missing,9,-9898462262
+W0167,Kabir Rao,34,Technician,Zone E,Night,Minor Injury,Partial,5,-6457575744
+W0168,Shaurya Mishra,33,Geologist,Zone A,Night,Fatigue,Missing,12,-8816172516
+W0169,Aarohi Patel,41,Safety Officer,Zone A,Day,Minor Injury,Complete,17,-9832416597
+W0170,Pihu Chopra,50,Engineer,Zone B,Day,Fatigue,Partial,11,-6541522913
+W0171,Navya Joshi,36,Miner,Zone B,Day,Major Injury,Missing,5,-6805112688
+W0172,Navya Verma,25,Engineer,Zone E,Night,Major Injury,Missing,22,-6249140417
+W0173,Vihaan Joshi,51,Miner,Zone E,Day,Fit,Complete,3,-9808889043
+W0174,Khushi Reddy,25,Technician,Zone C,Day,Fit,Complete,17,-9909908809
+W0175,Saanvi Sharma,24,Supervisor,Zone D,Day,Fatigue,Complete,15,-7563942345
+W0176,Diya Verma,44,Technician,Zone A,Day,Minor Injury,Complete,16,-8857384739
+W0177,Atharv Singh,46,Safety Officer,Zone B,Night,Minor Injury,Complete,21,-9018403202
+W0178,Arjun Verma,51,Engineer,Zone C,Night,Fatigue,Missing,15,-6783074111
+W0179,Ananya Iyer,44,Supervisor,Zone E,Night,Minor Injury,Partial,23,-6075299524
+W0180,Atharv Kumar,40,Supervisor,Zone B,Night,Major Injury,Complete,3,-9024192227
+W0181,Saanvi Kulkarni,23,Technician,Zone E,Night,Minor Injury,Complete,1,-7060632353
+W0182,Aarav Joshi,50,Technician,Zone E,Night,Fatigue,Complete,11,-6360984057
+W0183,Shaurya Kulkarni,38,Supervisor,Zone E,Day,Fatigue,Complete,5,-6689119140
+W0184,Pari Mehta,24,Geologist,Zone E,Day,Major Injury,Missing,24,-7471685058
+W0185,Krishna Singh,20,Miner,Zone A,Night,Minor Injury,Missing,13,-9327297648
+W0186,Meera Singh,55,Miner,Zone A,Night,Major Injury,Partial,25,-7337862575
+W0187,Meera Nair,44,Geologist,Zone D,Night,Minor Injury,Partial,9,-7185020264
+W0188,Khushi Agarwal,25,Engineer,Zone E,Day,Fatigue,Missing,20,-6675821418
+W0189,Atharv Joshi,42,Supervisor,Zone D,Night,Fit,Complete,14,-8188852280
+W0190,Sai Yadav,48,Engineer,Zone D,Night,Fit,Missing,4,-9680245927
+W0191,Aarohi Kumar,27,Miner,Zone D,Day,Minor Injury,Partial,10,-7406308874
+W0192,Khushi Verma,37,Safety Officer,Zone D,Day,Major Injury,Complete,11,-7479581341
+W0193,Diya Yadav,25,Safety Officer,Zone B,Day,Fit,Missing,12,-6584028393
+W0194,Aarav Agarwal,54,Supervisor,Zone A,Day,Minor Injury,Partial,3,-8248238766
+W0195,Ira Yadav,45,Geologist,Zone B,Day,Fatigue,Missing,2,-7856706097
+W0196,Riya Pillai,44,Technician,Zone E,Day,Minor Injury,Missing,11,-8846009135
+W0197,Aarav Rao,37,Safety Officer,Zone E,Night,Fit,Complete,19,-8740705474
+W0198,Pranav Mishra,33,Safety Officer,Zone C,Day,Minor Injury,Partial,19,-6583043667
+W0199,Sai Rao,36,Technician,Zone B,Night,Minor Injury,Partial,13,-8202556892
+W0200,Aarohi Chopra,40,Technician,Zone E,Night,Minor Injury,Partial,20,-7036726566
+W0201,Aarohi Reddy,31,Safety Officer,Zone B,Day,Fatigue,Partial,4,-8951802624
+W0202,Diya Reddy,32,Technician,Zone D,Day,Major Injury,Missing,24,-7730352841
+W0203,Navya Roy,27,Safety Officer,Zone D,Night,Minor Injury,Partial,15,-7177320991
+W0204,Aadhya Mehta,48,Technician,Zone A,Day,Major Injury,Missing,18,-6310133204
+W0205,Reyansh Chopra,38,Technician,Zone A,Day,Major Injury,Partial,18,-7944739824
+W0206,Pranav Nair,44,Technician,Zone D,Night,Fatigue,Complete,1,-8287450116
+W0207,Saanvi Iyer,36,Supervisor,Zone B,Day,Fit,Complete,14,-8266233789
+W0208,Vivaan Mishra,54,Geologist,Zone C,Night,Fatigue,Missing,23,-7844281146
+W0209,Pranav Agarwal,32,Engineer,Zone D,Day,Minor Injury,Missing,10,-8104053694
+W0210,Saanvi Iyer,50,Technician,Zone A,Night,Major Injury,Missing,24,-6827189022
+W0211,Meera Ghosh,24,Miner,Zone C,Night,Fit,Complete,20,-8771101862
+W0212,Ananya Yadav,23,Safety Officer,Zone E,Day,Fit,Complete,11,-7002204693
+W0213,Sai Mehta,39,Technician,Zone D,Day,Fit,Missing,4,-7656027326
+W0214,Reyansh Patel,53,Technician,Zone E,Night,Fit,Missing,17,-8641717344
+W0215,Rudra Shetty,20,Technician,Zone C,Day,Minor Injury,Complete,17,-8563129971
+W0216,Aarohi Patel,52,Technician,Zone A,Night,Fatigue,Complete,15,-6746056313
+W0217,Rudra Mehta,40,Miner,Zone A,Night,Fit,Partial,12,-9083911208
+W0218,Atharv Chopra,53,Technician,Zone E,Day,Fatigue,Partial,11,-6142217403
+W0219,Ananya Reddy,42,Technician,Zone A,Night,Minor Injury,Partial,21,-8903768417
+W0220,Pihu Mishra,52,Supervisor,Zone C,Day,Fit,Partial,2,-6011379900
+W0221,Pari Verma,28,Technician,Zone D,Day,Fit,Partial,23,-7958575218
+W0222,Arjun Das,46,Technician,Zone B,Day,Fatigue,Missing,9,-6535477939
+W0223,Aditya Singh,51,Geologist,Zone C,Night,Fatigue,Missing,22,-8559759735
+W0224,Meera Singh,22,Miner,Zone D,Day,Major Injury,Complete,14,-7442147920
+W0225,Vihaan Patel,45,Safety Officer,Zone B,Day,Fit,Complete,10,-9175086117
+W0226,Arjun Roy,29,Safety Officer,Zone B,Night,Fatigue,Complete,25,-6532641971
+W0227,Riya Patel,48,Supervisor,Zone B,Day,Minor Injury,Missing,19,-9448461841
+W0228,Aadhya Singh,22,Miner,Zone D,Night,Major Injury,Partial,14,-6897049103
+W0229,Saanvi Verma,35,Miner,Zone D,Night,Fatigue,Partial,20,-6599872319
+W0230,Meera Reddy,38,Miner,Zone C,Night,Minor Injury,Missing,20,-8637605683
+W0231,Reyansh Mishra,49,Supervisor,Zone C,Night,Fit,Partial,20,-9153548983
+W0232,Aadhya Mishra,37,Technician,Zone E,Night,Minor Injury,Complete,18,-7784683069
+W0233,Ananya Patel,36,Engineer,Zone B,Night,Major Injury,Partial,13,-8798709070
+W0234,Navya Ghosh,23,Geologist,Zone C,Night,Fit,Complete,3,-6693409343
+W0235,Aadhya Sharma,41,Geologist,Zone D,Night,Fatigue,Partial,9,-8665494751
+W0236,Aditya Verma,31,Engineer,Zone C,Night,Fit,Partial,25,-9904363699
+W0237,Ira Mishra,46,Technician,Zone B,Day,Minor Injury,Missing,18,-7347382399
+W0238,Aadhya Agarwal,39,Technician,Zone A,Day,Minor Injury,Partial,1,-9101903582
+W0239,Aarav Patel,34,Supervisor,Zone E,Day,Major Injury,Partial,23,-8545682496
+W0240,Aadhya Shetty,30,Engineer,Zone E,Day,Fit,Complete,12,-8292755132
+W0241,Vivaan Kumar,35,Safety Officer,Zone D,Night,Fatigue,Partial,7,-7856222724
+W0242,Vihaan Kumar,35,Technician,Zone B,Day,Fatigue,Partial,12,-7116173630
+W0243,Myra Agarwal,37,Safety Officer,Zone D,Day,Fit,Missing,4,-6961539578
+W0244,Ira Mehta,35,Safety Officer,Zone D,Night,Major Injury,Complete,18,-6872993777
+W0245,Kabir Rao,25,Geologist,Zone D,Day,Fit,Complete,22,-9750835126
+W0246,Ira Patel,22,Technician,Zone E,Day,Fatigue,Complete,16,-6992426373
+W0247,Shaurya Agarwal,26,Geologist,Zone C,Day,Fatigue,Partial,23,-6190383982
+W0248,Arjun Nair,46,Miner,Zone B,Day,Minor Injury,Complete,19,-7968145978
+W0249,Aadhya Mishra,21,Miner,Zone E,Day,Fit,Missing,2,-9678974281
+W0250,Anvi Mishra,53,Miner,Zone A,Day,Fit,Missing,9,-6235555788
+W0251,Riya Yadav,45,Geologist,Zone D,Night,Fit,Complete,25,-6859327093
+W0252,Myra Singh,20,Geologist,Zone E,Night,Minor Injury,Missing,15,-8378475343
+W0253,Khushi Ghosh,36,Safety Officer,Zone B,Night,Major Injury,Complete,16,-9136734524
+W0254,Shaurya Ghosh,45,Safety Officer,Zone D,Day,Major Injury,Missing,12,-9364479382
+W0255,Shaurya Sharma,24,Miner,Zone A,Night,Minor Injury,Partial,15,-8108466140
+W0256,Kabir Chopra,30,Miner,Zone E,Night,Fatigue,Complete,5,-7062380955
+W0257,Riya Iyer,50,Miner,Zone C,Day,Major Injury,Complete,2,-9618245298
+W0258,Ira Kumar,54,Engineer,Zone B,Day,Minor Injury,Partial,6,-8729338478
+W0259,Ananya Patel,40,Technician,Zone A,Day,Major Injury,Partial,24,-8763071499
+W0260,Diya Rao,49,Geologist,Zone C,Day,Fatigue,Missing,8,-7952739721
+W0261,Aditya Gupta,29,Engineer,Zone C,Day,Minor Injury,Missing,9,-9083570959
+W0262,Ananya Nair,40,Engineer,Zone C,Night,Major Injury,Missing,10,-6018607847
+W0263,Vivaan Singh,49,Engineer,Zone D,Day,Major Injury,Missing,2,-8484046619
+W0264,Arjun Mehta,34,Miner,Zone C,Night,Fatigue,Complete,7,-7242624967
+W0265,Vihaan Chopra,28,Engineer,Zone B,Day,Major Injury,Missing,16,-8706760566
+W0266,Diya Agarwal,22,Engineer,Zone A,Day,Major Injury,Partial,7,-8093001866
+W0267,Meera Joshi,54,Technician,Zone C,Night,Fatigue,Complete,5,-9590425702
+W0268,Shaurya Verma,55,Engineer,Zone C,Day,Major Injury,Partial,18,-6016543779
+W0269,Meera Yadav,51,Safety Officer,Zone C,Day,Fit,Partial,3,-8868169137
+W0270,Kabir Singh,48,Geologist,Zone C,Night,Fatigue,Missing,15,-7494833432
+W0271,Vihaan Iyer,20,Engineer,Zone E,Day,Fit,Complete,18,-9687301653
+W0272,Ananya Mehta,53,Technician,Zone B,Night,Minor Injury,Missing,22,-8497803381
+W0273,Ishaan Patel,54,Safety Officer,Zone C,Day,Fit,Partial,19,-9575967260
+W0274,Meera Chopra,43,Supervisor,Zone C,Day,Minor Injury,Partial,15,-6999457957
+W0275,Atharv Shetty,35,Safety Officer,Zone E,Day,Fatigue,Missing,12,-8201414400
+W0276,Aarohi Chopra,53,Engineer,Zone C,Night,Fit,Missing,14,-8980439670
+W0277,Anvi Gupta,28,Engineer,Zone C,Day,Major Injury,Missing,22,-7971181767
+W0278,Saanvi Singh,31,Supervisor,Zone E,Night,Fit,Partial,25,-8507165265
+W0279,Shaurya Gupta,29,Miner,Zone E,Day,Fatigue,Partial,2,-6789978020
+W0280,Aarav Agarwal,21,Miner,Zone C,Day,Fatigue,Complete,25,-9738501166
+W0281,Khushi Pillai,53,Technician,Zone C,Day,Major Injury,Missing,24,-6948399054
+W0282,Vihaan Iyer,20,Technician,Zone E,Night,Minor Injury,Partial,2,-6106488280
+W0283,Aarohi Nair,37,Safety Officer,Zone E,Night,Fatigue,Missing,13,-7489708055
+W0284,Rohan Das,54,Technician,Zone C,Night,Minor Injury,Complete,12,-7292096539
+W0285,Pari Kulkarni,38,Supervisor,Zone D,Night,Minor Injury,Partial,9,-8330325430
+W0286,Meera Patel,25,Safety Officer,Zone C,Night,Fatigue,Missing,19,-7999015960
+W0287,Khushi Agarwal,36,Geologist,Zone E,Night,Minor Injury,Missing,10,-7813831391
+W0288,Anika Chopra,41,Geologist,Zone D,Day,Fatigue,Complete,19,-6035951479
+W0289,Navya Mehta,25,Engineer,Zone D,Day,Fit,Partial,15,-8009385157
+W0290,Saanvi Nair,38,Supervisor,Zone B,Day,Fit,Complete,3,-7891666892
+W0291,Navya Mehta,41,Engineer,Zone D,Night,Fit,Missing,5,-8639908274
+W0292,Rudra Singh,25,Miner,Zone C,Night,Minor Injury,Missing,22,-6859951264
+W0293,Vivaan Chopra,41,Technician,Zone D,Day,Minor Injury,Complete,17,-8434960948
+W0294,Aadhya Ghosh,20,Supervisor,Zone E,Night,Minor Injury,Missing,10,-6230131708
+W0295,Arjun Mishra,24,Technician,Zone B,Day,Minor Injury,Complete,7,-7722145416
+W0296,Ananya Ghosh,34,Supervisor,Zone A,Day,Minor Injury,Missing,24,-6501422238
+W0297,Ira Iyer,36,Safety Officer,Zone C,Day,Fatigue,Partial,16,-9255190883
+W0298,Meera Mehta,21,Technician,Zone D,Night,Fit,Missing,21,-9782019365
+W0299,Aarav Sharma,40,Technician,Zone E,Day,Fit,Partial,9,-8652625910
+W0300,Ananya Gupta,29,Miner,Zone C,Day,Fatigue,Complete,10,-7544850354
+W0301,Sai Singh,32,Safety Officer,Zone D,Day,Fit,Missing,4,-9272595016
+W0302,Krishna Gupta,40,Engineer,Zone E,Day,Major Injury,Complete,18,-8371055358
+W0303,Kabir Roy,45,Supervisor,Zone D,Night,Fatigue,Partial,2,-7835494555
+W0304,Shaurya Chopra,46,Technician,Zone B,Day,Minor Injury,Partial,19,-6140026307
+W0305,Atharv Reddy,54,Engineer,Zone E,Day,Major Injury,Complete,15,-8660033656
+W0306,Aarohi Yadav,24,Geologist,Zone D,Day,Major Injury,Missing,2,-6880077414
+W0307,Vihaan Rao,25,Miner,Zone D,Night,Minor Injury,Complete,14,-8929332169
+W0308,Myra Nair,29,Miner,Zone A,Night,Fit,Missing,2,-8925405637
+W0309,Vihaan Reddy,25,Miner,Zone B,Night,Fit,Partial,11,-8966063790
+W0310,Vihaan Patel,21,Supervisor,Zone E,Night,Fit,Complete,7,-7885380969
+W0311,Ishaan Agarwal,30,Technician,Zone E,Day,Major Injury,Complete,25,-9664721730
+W0312,Atharv Sharma,54,Technician,Zone B,Night,Major Injury,Complete,11,-7263611322
+W0313,Ishaan Kulkarni,39,Geologist,Zone A,Night,Minor Injury,Complete,2,-7636486080
+W0314,Diya Mishra,42,Safety Officer,Zone A,Night,Major Injury,Complete,6,-7919678230
+W0315,Vivaan Reddy,36,Safety Officer,Zone D,Day,Major Injury,Complete,5,-7837670025
+W0316,Pranav Mehta,20,Geologist,Zone B,Night,Minor Injury,Missing,24,-9641008731
+W0317,Navya Singh,21,Technician,Zone C,Day,Minor Injury,Missing,1,-9739585712
+W0318,Rohan Joshi,55,Supervisor,Zone E,Night,Major Injury,Missing,10,-7231191326
+W0319,Sai Agarwal,24,Geologist,Zone D,Night,Major Injury,Partial,3,-9433075930
+W0320,Aditya Patel,32,Engineer,Zone A,Day,Fit,Complete,8,-6772430754
+W0321,Pranav Reddy,34,Geologist,Zone C,Day,Major Injury,Missing,9,-7218208543
+W0322,Reyansh Sharma,40,Geologist,Zone C,Day,Fit,Missing,3,-9060895004
+W0323,Rudra Yadav,27,Miner,Zone B,Day,Fatigue,Partial,2,-7135758041
+W0324,Saanvi Rao,38,Miner,Zone C,Night,Major Injury,Partial,3,-8167088773
+W0325,Navya Chopra,28,Geologist,Zone E,Day,Fatigue,Complete,7,-9057312649
+W0326,Vihaan Chopra,24,Safety Officer,Zone B,Day,Fatigue,Missing,23,-6700581819
+W0327,Vihaan Joshi,50,Technician,Zone C,Night,Fit,Partial,19,-8298534183
+W0328,Pihu Ghosh,32,Engineer,Zone C,Day,Major Injury,Complete,12,-6141160706
+W0329,Krishna Roy,55,Geologist,Zone E,Day,Minor Injury,Complete,1,-9774712850
+W0330,Pranav Nair,42,Miner,Zone C,Night,Minor Injury,Partial,17,-6319895639
+W0331,Ira Rao,32,Miner,Zone A,Day,Major Injury,Missing,22,-7516610159
+W0332,Sai Ghosh,38,Engineer,Zone A,Night,Fatigue,Partial,22,-9712750956
+W0333,Arjun Patel,36,Geologist,Zone B,Day,Fatigue,Partial,14,-7813516262
+W0334,Kabir Shetty,27,Engineer,Zone C,Night,Major Injury,Missing,11,-6183292157
+W0335,Anvi Yadav,53,Geologist,Zone D,Day,Minor Injury,Complete,6,-9209336204
+W0336,Meera Mehta,44,Engineer,Zone B,Day,Major Injury,Partial,10,-8890744744
+W0337,Arjun Yadav,54,Engineer,Zone B,Day,Fit,Missing,25,-7295498279
+W0338,Navya Singh,50,Technician,Zone B,Day,Minor Injury,Missing,22,-9247587627
+W0339,Pari Singh,20,Safety Officer,Zone A,Night,Fatigue,Missing,25,-9670919276
+W0340,Pranav Agarwal,55,Geologist,Zone A,Night,Fatigue,Missing,8,-9551518973
+W0341,Saanvi Joshi,43,Supervisor,Zone E,Day,Major Injury,Missing,13,-9115623809
+W0342,Atharv Verma,37,Miner,Zone B,Day,Fit,Missing,11,-7080831412
+W0343,Navya Mehta,32,Safety Officer,Zone A,Day,Fatigue,Missing,16,-9642683748
+W0344,Atharv Kumar,47,Engineer,Zone D,Night,Fatigue,Complete,25,-8768286056
+W0345,Pihu Das,41,Supervisor,Zone B,Night,Major Injury,Partial,11,-7866724919
+W0346,Ira Agarwal,24,Supervisor,Zone E,Day,Major Injury,Complete,15,-7652286033
+W0347,Anika Singh,39,Supervisor,Zone E,Day,Minor Injury,Partial,8,-6901571847
+W0348,Vihaan Chopra,29,Supervisor,Zone E,Night,Fit,Missing,24,-6138465073
+W0349,Pihu Roy,54,Miner,Zone B,Night,Minor Injury,Partial,22,-8447102472
+W0350,Ananya Pillai,23,Supervisor,Zone B,Day,Fatigue,Partial,5,-8927802795
+W0351,Anvi Mishra,47,Engineer,Zone A,Day,Major Injury,Partial,22,-8422275783
+W0352,Meera Roy,31,Safety Officer,Zone C,Day,Fatigue,Partial,7,-9396056761
+W0353,Anvi Mishra,55,Supervisor,Zone B,Night,Fit,Complete,8,-9156870832
+W0354,Aadhya Agarwal,49,Technician,Zone B,Day,Minor Injury,Partial,21,-6667758669
+W0355,Ira Mehta,28,Supervisor,Zone E,Night,Major Injury,Partial,10,-7663803235
+W0356,Riya Patel,40,Technician,Zone A,Night,Major Injury,Missing,4,-6590892024
+W0357,Saanvi Sharma,28,Technician,Zone B,Night,Fatigue,Missing,7,-6552057060
+W0358,Aditya Sharma,34,Miner,Zone C,Night,Fit,Complete,10,-9601025726
+W0359,Aadhya Sharma,30,Miner,Zone C,Night,Fatigue,Partial,6,-7722319268
+W0360,Myra Roy,54,Supervisor,Zone E,Night,Major Injury,Partial,4,-9421007422
+W0361,Aarav Iyer,49,Miner,Zone D,Night,Fit,Missing,10,-9375769349
+W0362,Sai Gupta,50,Technician,Zone D,Night,Minor Injury,Missing,10,-9502204199
+W0363,Pranav Patel,45,Miner,Zone A,Night,Major Injury,Partial,19,-6866284188
+W0364,Shaurya Shetty,26,Supervisor,Zone A,Night,Fatigue,Complete,17,-7803485458
+W0365,Anvi Agarwal,33,Supervisor,Zone C,Day,Fatigue,Partial,14,-7744522732
+W0366,Ira Chopra,44,Miner,Zone B,Day,Fit,Missing,14,-9122467892
+W0367,Rohan Ghosh,53,Technician,Zone C,Night,Fatigue,Partial,1,-8193174557
+W0368,Anvi Agarwal,27,Engineer,Zone A,Day,Fatigue,Complete,1,-8739026799
+W0369,Aarohi Chopra,40,Engineer,Zone A,Night,Fatigue,Missing,20,-8437860800
+W0370,Ishaan Rao,45,Safety Officer,Zone D,Night,Fit,Missing,21,-9873848647
+W0371,Ananya Mishra,55,Geologist,Zone C,Day,Minor Injury,Missing,7,-6062631443
+W0372,Diya Ghosh,24,Engineer,Zone E,Day,Fatigue,Partial,1,-7123453891
+W0373,Vivaan Das,28,Geologist,Zone C,Day,Fatigue,Complete,3,-7605706940
+W0374,Anvi Iyer,38,Safety Officer,Zone B,Night,Fatigue,Complete,10,-9328348689
+W0375,Rohan Gupta,46,Geologist,Zone E,Day,Fit,Missing,15,-6866386445
+W0376,Vivaan Singh,38,Miner,Zone D,Night,Fit,Partial,1,-9093428725
+W0377,Ira Mehta,31,Miner,Zone B,Day,Minor Injury,Complete,17,-7139734890
+W0378,Rohan Kumar,43,Engineer,Zone B,Day,Fit,Missing,9,-9703271610
+W0379,Kabir Verma,41,Geologist,Zone C,Day,Fatigue,Complete,1,-6794430839
+W0380,Atharv Patel,33,Geologist,Zone D,Day,Fit,Missing,10,-9487409316
+W0381,Pari Kulkarni,30,Supervisor,Zone D,Day,Minor Injury,Partial,18,-6353956708
+W0382,Kabir Chopra,54,Geologist,Zone D,Night,Major Injury,Complete,17,-8791636119
+W0383,Aadhya Shetty,28,Supervisor,Zone B,Day,Minor Injury,Partial,25,-6533045197
+W0384,Kabir Mishra,43,Geologist,Zone D,Day,Major Injury,Complete,24,-6126294101
+W0385,Meera Sharma,51,Technician,Zone D,Day,Minor Injury,Complete,20,-6390105905
+W0386,Kabir Yadav,53,Technician,Zone B,Day,Fatigue,Missing,14,-9151032908
+W0387,Pari Gupta,26,Safety Officer,Zone A,Night,Fit,Complete,9,-6527722422
+W0388,Aditya Mehta,27,Safety Officer,Zone E,Day,Fit,Missing,3,-9293531256
+W0389,Ananya Reddy,42,Miner,Zone B,Day,Major Injury,Partial,10,-9310718386
+W0390,Reyansh Gupta,33,Geologist,Zone C,Day,Fatigue,Missing,8,-6218520636
+W0391,Diya Das,35,Engineer,Zone A,Night,Fit,Missing,21,-9834971150
+W0392,Rohan Pillai,31,Technician,Zone E,Day,Fatigue,Missing,2,-7351406130
+W0393,Ira Chopra,53,Miner,Zone B,Night,Minor Injury,Partial,18,-6558917569
+W0394,Rohan Joshi,37,Engineer,Zone A,Day,Minor Injury,Missing,14,-8414197924
+W0395,Khushi Patel,38,Engineer,Zone D,Day,Fatigue,Partial,23,-8749945251
+W0396,Ananya Singh,40,Geologist,Zone C,Night,Fatigue,Missing,5,-9834781063
+W0397,Rudra Nair,26,Technician,Zone C,Day,Minor Injury,Missing,14,-6064640913
+W0398,Aditya Singh,34,Geologist,Zone E,Night,Minor Injury,Missing,4,-6973739213
+W0399,Aarav Shetty,35,Supervisor,Zone C,Night,Minor Injury,Missing,6,-6140627306
+W0400,Sai Gupta,40,Safety Officer,Zone B,Day,Fatigue,Missing,11,-9965050298
+W0401,Sai Patel,26,Technician,Zone C,Night,Fatigue,Complete,17,-6787197959
+W0402,Meera Ghosh,53,Technician,Zone E,Day,Major Injury,Complete,22,-7833300308
+W0403,Aarohi Roy,44,Supervisor,Zone B,Day,Fit,Complete,12,-9308796153
+W0404,Reyansh Kulkarni,55,Supervisor,Zone D,Day,Fit,Missing,23,-9585980077
+W0405,Saanvi Agarwal,30,Miner,Zone A,Day,Minor Injury,Complete,1,-9298381779
+W0406,Rudra Joshi,51,Technician,Zone D,Night,Fatigue,Complete,10,-9003662345
+W0407,Krishna Mehta,21,Geologist,Zone E,Day,Major Injury,Partial,7,-8735581192
+W0408,Sai Kumar,24,Safety Officer,Zone A,Night,Minor Injury,Missing,18,-7727222767
+W0409,Ananya Nair,24,Supervisor,Zone D,Day,Fatigue,Missing,13,-7283222021
+W0410,Saanvi Agarwal,53,Safety Officer,Zone B,Day,Fatigue,Complete,18,-8600062030
+W0411,Navya Ghosh,21,Technician,Zone A,Day,Minor Injury,Complete,3,-6033444587
+W0412,Shaurya Ghosh,20,Engineer,Zone B,Day,Major Injury,Complete,17,-8487713788
+W0413,Vivaan Iyer,22,Safety Officer,Zone E,Day,Fit,Partial,9,-9247422047
+W0414,Arjun Rao,38,Miner,Zone E,Day,Fit,Missing,11,-9521611423
+W0415,Navya Reddy,49,Geologist,Zone E,Night,Fatigue,Complete,6,-8297352207
+W0416,Navya Mishra,25,Engineer,Zone B,Day,Major Injury,Partial,23,-7206907833
+W0417,Ishaan Yadav,48,Geologist,Zone A,Day,Fatigue,Complete,17,-7455394574
+W0418,Aditya Rao,27,Geologist,Zone D,Night,Fit,Missing,15,-6017236841
+W0419,Anika Pillai,45,Miner,Zone E,Night,Fatigue,Complete,1,-7840338137
+W0420,Shaurya Mishra,44,Technician,Zone C,Day,Minor Injury,Complete,17,-8355162332
+W0421,Diya Gupta,47,Safety Officer,Zone A,Night,Fit,Missing,1,-8951385230
+W0422,Diya Verma,31,Supervisor,Zone C,Day,Major Injury,Missing,25,-7008951964
+W0423,Aarav Nair,38,Safety Officer,Zone A,Day,Fatigue,Complete,1,-6591605015
+W0424,Sai Rao,45,Engineer,Zone D,Day,Major Injury,Partial,25,-8144885258
+W0425,Kabir Joshi,26,Engineer,Zone C,Night,Fatigue,Partial,18,-7409162019
+W0426,Ishaan Singh,20,Miner,Zone A,Night,Fatigue,Missing,17,-9412774892
+W0427,Ira Sharma,42,Supervisor,Zone E,Day,Minor Injury,Missing,25,-7493524894
+W0428,Aditya Pillai,44,Technician,Zone B,Day,Fatigue,Missing,3,-6933278916
+W0429,Meera Reddy,32,Miner,Zone B,Day,Minor Injury,Partial,2,-7219431470
+W0430,Diya Joshi,35,Technician,Zone B,Day,Minor Injury,Missing,4,-8406694900
+W0431,Aadhya Rao,46,Safety Officer,Zone E,Day,Major Injury,Missing,9,-6894868351
+W0432,Vihaan Patel,55,Engineer,Zone E,Night,Minor Injury,Partial,18,-9420322594
+W0433,Ishaan Verma,54,Engineer,Zone B,Night,Fit,Complete,6,-6902545997
+W0434,Vihaan Chopra,26,Supervisor,Zone D,Day,Minor Injury,Partial,2,-8353953973
+W0435,Vihaan Kumar,54,Supervisor,Zone B,Day,Fit,Missing,14,-6477050732
+W0436,Rudra Rao,42,Geologist,Zone C,Night,Major Injury,Partial,18,-7203483384
+W0437,Ishaan Das,34,Technician,Zone A,Night,Fatigue,Partial,21,-6504672054
+W0438,Sai Pillai,27,Safety Officer,Zone D,Day,Fatigue,Missing,15,-8693254267
+W0439,Aadhya Mehta,24,Engineer,Zone B,Day,Major Injury,Missing,23,-8531117706
+W0440,Atharv Rao,34,Engineer,Zone D,Night,Minor Injury,Partial,6,-6664808931
+W0441,Ishaan Kulkarni,55,Engineer,Zone A,Night,Minor Injury,Missing,24,-6639398502
+W0442,Atharv Reddy,28,Miner,Zone B,Day,Major Injury,Missing,2,-7497084835
+W0443,Ira Singh,22,Safety Officer,Zone D,Night,Fit,Complete,20,-8889629824
+W0444,Riya Patel,38,Engineer,Zone C,Day,Major Injury,Partial,11,-7228882492
+W0445,Pari Joshi,27,Technician,Zone B,Night,Fatigue,Partial,16,-6216761994
+W0446,Rudra Shetty,52,Geologist,Zone D,Day,Minor Injury,Complete,3,-9374141350
+W0447,Khushi Agarwal,49,Technician,Zone B,Night,Fatigue,Missing,6,-7310844049
+W0448,Pranav Pillai,39,Miner,Zone B,Day,Major Injury,Partial,13,-9913549365
+W0449,Pranav Kumar,30,Miner,Zone C,Day,Minor Injury,Partial,17,-8005703425
+W0450,Meera Agarwal,49,Safety Officer,Zone D,Night,Major Injury,Complete,18,-9637852733
+W0451,Diya Kumar,38,Engineer,Zone E,Night,Minor Injury,Missing,20,-7682270021
+W0452,Rohan Singh,51,Safety Officer,Zone A,Night,Fatigue,Complete,24,-9536229302
+W0453,Aditya Joshi,27,Safety Officer,Zone C,Day,Fit,Partial,4,-8459664646
+W0454,Anvi Mehta,44,Supervisor,Zone A,Night,Fatigue,Partial,4,-6368523799
+W0455,Diya Ghosh,34,Technician,Zone A,Day,Fit,Partial,8,-6986324386
+W0456,Meera Shetty,49,Supervisor,Zone A,Day,Fit,Missing,5,-7770738424
+W0457,Ananya Mishra,21,Safety Officer,Zone B,Day,Minor Injury,Complete,20,-9106807996
+W0458,Kabir Rao,54,Technician,Zone D,Day,Minor Injury,Missing,9,-9239976242
+W0459,Sai Kumar,21,Miner,Zone A,Day,Fit,Complete,25,-7951731770
+W0460,Sai Das,54,Geologist,Zone A,Night,Fatigue,Missing,17,-7552980787
+W0461,Rohan Sharma,32,Geologist,Zone A,Night,Fit,Missing,19,-9853608526
+W0462,Aadhya Pillai,27,Miner,Zone B,Day,Minor Injury,Missing,4,-7193921404
+W0463,Myra Mishra,22,Geologist,Zone E,Night,Fatigue,Complete,16,-7938800686
+W0464,Navya Chopra,23,Engineer,Zone B,Night,Major Injury,Missing,5,-8799677808
+W0465,Krishna Pillai,30,Miner,Zone E,Day,Fatigue,Complete,19,-6762350943
+W0466,Ananya Mishra,36,Engineer,Zone D,Day,Minor Injury,Complete,7,-8014555988
+W0467,Sai Das,26,Engineer,Zone B,Day,Major Injury,Partial,23,-7030596674
+W0468,Kabir Shetty,26,Miner,Zone C,Day,Minor Injury,Partial,13,-8497336125
+W0469,Vivaan Pillai,50,Geologist,Zone C,Night,Major Injury,Partial,2,-6629781145
+W0470,Shaurya Verma,33,Supervisor,Zone A,Night,Fatigue,Complete,7,-9241957798
+W0471,Rohan Nair,37,Supervisor,Zone B,Night,Minor Injury,Partial,12,-7895173316
+W0472,Aditya Pillai,54,Engineer,Zone B,Night,Major Injury,Missing,10,-9089834891
+W0473,Sai Kulkarni,26,Geologist,Zone C,Day,Fatigue,Complete,3,-6674127388
+W0474,Shaurya Roy,44,Engineer,Zone D,Night,Major Injury,Complete,7,-9329799369
+W0475,Aarav Singh,48,Engineer,Zone A,Day,Major Injury,Complete,25,-7777367113
+W0476,Navya Singh,54,Safety Officer,Zone B,Day,Minor Injury,Complete,11,-9398304716
+W0477,Vihaan Iyer,25,Technician,Zone D,Night,Fit,Missing,24,-6498961505
+W0478,Reyansh Joshi,49,Technician,Zone D,Day,Fatigue,Partial,9,-6086689197
+W0479,Diya Mishra,29,Safety Officer,Zone A,Day,Fatigue,Missing,1,-8361892985
+W0480,Sai Das,49,Geologist,Zone C,Night,Fatigue,Partial,19,-6715240041
+W0481,Sai Mishra,45,Safety Officer,Zone A,Day,Fit,Missing,25,-8488517616
+W0482,Diya Sharma,39,Technician,Zone E,Night,Minor Injury,Partial,4,-7564612047
+W0483,Diya Rao,47,Supervisor,Zone D,Day,Minor Injury,Partial,20,-6617330577
+W0484,Anika Singh,28,Supervisor,Zone B,Day,Fatigue,Missing,10,-9659246302
+W0485,Pranav Mishra,34,Miner,Zone E,Night,Minor Injury,Missing,3,-7195327536
+W0486,Aarohi Kulkarni,43,Safety Officer,Zone B,Night,Major Injury,Missing,10,-7665019468
+W0487,Khushi Yadav,51,Geologist,Zone D,Day,Major Injury,Complete,11,-8479980314
+W0488,Krishna Mehta,33,Engineer,Zone E,Day,Fatigue,Complete,25,-6010194573
+W0489,Pranav Kulkarni,38,Miner,Zone E,Day,Major Injury,Partial,7,-6866328117
+W0490,Vihaan Reddy,39,Technician,Zone B,Night,Fatigue,Complete,16,-7736018196
+W0491,Reyansh Roy,40,Geologist,Zone C,Night,Minor Injury,Complete,15,-7143409790
+W0492,Pari Sharma,55,Engineer,Zone C,Night,Major Injury,Missing,17,-9725780607
+W0493,Pranav Gupta,44,Geologist,Zone C,Night,Major Injury,Missing,17,-9790974668
+W0494,Saanvi Shetty,28,Miner,Zone B,Day,Major Injury,Complete,16,-9261903108
+W0495,Aadhya Ghosh,54,Technician,Zone D,Night,Major Injury,Missing,24,-8526649759
+W0496,Diya Nair,23,Safety Officer,Zone C,Day,Fatigue,Missing,6,-7437690671
+W0497,Pranav Chopra,48,Safety Officer,Zone E,Night,Minor Injury,Missing,23,-9613027585
+W0498,Ananya Mehta,24,Safety Officer,Zone A,Night,Major Injury,Missing,5,-6574424411
+W0499,Diya Singh,22,Engineer,Zone A,Day,Major Injury,Missing,7,-9164452852
+W0500,Ishaan Sharma,20,Geologist,Zone E,Night,Minor Injury,Complete,8,-7557894013

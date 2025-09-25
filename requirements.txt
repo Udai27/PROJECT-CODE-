@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+httpx
+pydantic
+numpy
+python-dateutil
+python-dotenv
+asyncio-mqtt
+pyserial
