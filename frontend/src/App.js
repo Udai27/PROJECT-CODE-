@@ -1,52 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
-// 👇 Apne components import karo
-import PredictivePage from './PredictivePage';
-import FieldWorkerDashboard from './FieldWorkerDashboard';
-import AIPredictiveContent from './AIPredictiveContent';
+import React, { useEffect, useState } from "react";
+import Dashboard from "./Dashboard"; // ✅ Tumhara frontend file
+import "./App.css";
 
 function App() {
+  const [backendData, setBackendData] = useState(null);
+
+  // ✅ Backend API call (server.js ke routes se data lena)
+  useEffect(() => {
+    fetch("http://localhost:8000/api/hello") // server.js ke API endpoint ka URL
+      .then((res) => res.json())
+      .then((data) => setBackendData(data))
+      .catch((err) => console.error("Error fetching backend:", err));
+  }, []);
+
   return (
     <div className="App">
-      {/* Default React Template (same as before) */}
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>🚀 Rockfall Prediction Project</h1>
 
-      {/* 👇 Tumhara custom project UI */}
-      <main style={{ padding: "20px" }}>
-        <h1>🚀 Rockfall Prediction Dashboard</h1>
+      {/* ✅ Dashboard load karo */}
+      <Dashboard />
 
-        {/* Predictive Page */}
-        <section style={{ margin: "20px 0" }}>
-          <h2>Predictive Page</h2>
-          <PredictivePage />
-        </section>
-
-        {/* Field Worker Dashboard */}
-        <section style={{ margin: "20px 0" }}>
-          <h2>Field Worker Dashboard</h2>
-          <FieldWorkerDashboard />
-        </section>
-
-        {/* AI Predictive Content */}
-        <section style={{ margin: "20px 0" }}>
-          <h2>AI Predictive Content</h2>
-          <AIPredictiveContent />
-        </section>
-      </main>
+      {/* ✅ Backend se aya hua data dikhana */}
+      <div style={{ marginTop: "20px" }}>
+        <h3>Backend Response:</h3>
+        {backendData ? <pre>{JSON.stringify(backendData, null, 2)}</pre> : "Loading..."}
+      </div>
     </div>
   );
 }
