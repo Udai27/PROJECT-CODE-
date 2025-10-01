@@ -1,0 +1,31 @@
+city,district,state,mine_name,mineral,lat,lon
+Dhanbad,Dhanbad,Jharkhand,Jharia Coalfield,Coal,23.7957,86.4304
+Bokaro,Bokaro,Jharkhand,Bokaro Coalfield,Coal,23.6693,86.1511
+Ranchi,Ranchi,Jharkhand,Rajrappa Mines,Coal,23.3441,85.3096
+Keonjhar,Keonjhar,Odisha,Bamebari Mines,Iron Ore,21.628,85.5817
+Barbil,Keonjhar,Odisha,Thakurani Mines,Iron Ore,22.1066,85.3775
+Korba,Korba,Chhattisgarh,Gevra Mines,Coal,22.3595,82.7501
+Bilaspur,Bilaspur,Chhattisgarh,Dipka Mines,Coal,22.0797,82.1391
+Goa,North Goa,Goa,Bicholim Mines,Iron Ore,15.592,73.9453
+Hospet,Bellary,Karnataka,Donimalai Mines,Iron Ore,15.2695,76.3871
+Udaipur,Udaipur,Rajasthan,Zawar Mines,Zinc,24.5854,73.7125
+Nagpur,Nagpur,Maharashtra,Nagpur Mine 1,Manganese,13.8475,75.7868
+Hyderabad,Hyderabad,Telangana,Hyderabad Mine 2,Manganese,24.1364,71.1717
+Jaipur,Jaipur,Rajasthan,Jaipur Mine 3,Manganese,19.5383,81.1601
+Jodhpur,Jodhpur,Rajasthan,Jodhpur Mine 4,Manganese,28.099,75.5894
+Satna,Satna,Madhya Pradesh,Satna Mine 5,Limestone,28.709,68.9119
+Rewa,Rewa,Madhya Pradesh,Rewa Mine 6,Diamond,15.7495,75.5412
+Bellary,Bellary,Karnataka,Bellary Mine 7,Bauxite,25.3809,91.8292
+Chennai,Chennai,Tamil Nadu,Chennai Mine 8,Zinc,16.1381,81.8068
+Visakhapatnam,Visakhapatnam,Andhra Pradesh,Visakhapatnam Mine 9,Bauxite,11.4216,69.8499
+Gwalior,Gwalior,Madhya Pradesh,Gwalior Mine 10,Limestone,12.977,84.6701
+Pune,Pune,Maharashtra,Pune Mine 11,Copper,30.9027,70.4362
+Ahmedabad,Ahmedabad,Gujarat,Ahmedabad Mine 12,Copper,10.672,95.08
+Raipur,Raipur,Chhattisgarh,Raipur Mine 13,Manganese,31.6011,87.5004
+Surat,Surat,Gujarat,Surat Mine 14,Diamond,16.911,84.8063
+Kolkata,Kolkata,West Bengal,Kolkata Mine 15,Coal,10.105,85.2472
+Asansol,Asansol,West Bengal,Asansol Mine 16,Zinc,28.5076,87.8774
+Patna,Patna,Bihar,Patna Mine 17,Coal,25.5361,84.7627
+Lucknow,Lucknow,Uttar Pradesh,Lucknow Mine 18,Bauxite,9.8351,89.468
+Kanpur,Kanpur,Uttar Pradesh,Kanpur Mine 19,Coal,30.7889,83.8983
+Varanasi,Varanasi,Uttar Pradesh,Varanasi Mine 20,Bauxite,19.1511,95.1694

@@ -7,6 +7,8 @@ const axios = require("axios");
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
+const csv = require("csv-parser");
+const { spawn } = require("child_process");  // 🔹 Python call के लिए
 
 const app = express();
 app.use(cors());
@@ -14,9 +16,11 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 8000;
 const OPENWEATHER_KEY = process.env.OPENWEATHER_API_KEY || "";
+
+// ✅ Jaipur default fallback
 const DEFAULT_COORDS = {
-  lat: parseFloat(process.env.DEFAULT_LAT) || 26.8829,
-  lon: parseFloat(process.env.DEFAULT_LON) || 75.7957,
+  lat: parseFloat(process.env.DEFAULT_LAT) || 26.9124,
+  lon: parseFloat(process.env.DEFAULT_LON) || 75.7873,
 };
 
 // ---------------- Helpers ----------------
@@ -43,7 +47,193 @@ async function fetchOpenWeather(lat, lon) {
   }
 }
 
-// --- OpenMeteo
+// ==========================
+// Personnel Tracking Routes
+// ==========================
+
+// in-memory workers data (auto-generate)
+function generateWorkers(count = 12) {
+  const workers = [];
+  for (let i = 1; i <= count; i++) {
+    const riskTypes = ["SAFE", "CAUTION", "EMERGENCY"];
+    const risk = riskTypes[Math.floor(Math.random() * riskTypes.length)];
+    workers.push({
+      id: i,
+      x: Math.floor(Math.random() * 100),
+      y: Math.floor(Math.random() * 100),
+      zone: `Zone ${String.fromCharCode(65 + (i % 5))}`,
+      risk,
+      risk_score: Math.floor(Math.random() * 100),
+    });
+  }
+  return workers;
+}
+
+// store alerts
+let alerts = [];
+
+// GET /api/personnel/live
+app.get("/api/personnel/live", (req, res) => {
+  const count = parseInt(req.query.count) || 12;
+  const only = (req.query.only || "").toUpperCase();
+
+  let workers = generateWorkers(count);
+  if (only) {
+    workers = workers.filter((w) => w.risk === only.toUpperCase());
+  }
+
+  const totals = {
+    safe: workers.filter((w) => w.risk === "SAFE").length,
+    caution: workers.filter((w) => w.risk === "CAUTION").length,
+    emergency: workers.filter((w) => w.risk === "EMERGENCY").length,
+  };
+
+  // create alerts for caution/emergency workers
+  alerts = workers
+    .filter((w) => w.risk !== "SAFE")
+    .map((w) => ({
+      title: `Status Alert: Worker ${w.id}`,
+      sector: w.zone,
+      timestamp: new Date().toISOString(),
+      severity: w.risk === "EMERGENCY" ? "critical" : "warning",
+      status: "active",
+    }));
+
+  res.json({
+    updated: new Date().toISOString(),
+    workers,
+    totals,
+  });
+});
+
+// GET /api/personnel/alerts
+app.get("/api/personnel/alerts", (req, res) => {
+  res.json({ alerts });
+});
+
+// ==================================================
+// 🔹 Alerts API (AlertManagement.js के लिए)
+// ==================================================
+app.get("/api/alerts", (req, res) => {
+  const alerts = [
+    {
+      id: "AL-101",
+      title: "Landslide Risk in Zone A",
+      description: "Increased rainfall and slope instability detected",
+      sector: "Zone A",
+      sensor: "Rainfall + Slope Sensor",
+      assigned: "Team Alpha",
+      severity: "critical",
+      status: "active",
+      actions: ["Inspect site", "Evacuate workers", "Deploy drones"],
+      timestamp: new Date().toISOString(),
+    },
+    {
+      id: "AL-102",
+      title: "Seismic Activity in Zone B",
+      description: "Minor tremors recorded in the last 24h",
+      sector: "Zone B",
+      sensor: "Seismic Sensor",
+      assigned: "Team Bravo",
+      severity: "warning",   // 👈 small
+      status: "active",
+      actions: ["Check sensor logs", "Update risk map"],
+      timestamp: new Date().toISOString(),
+    },
+    {
+      id: "AL-103",
+      title: "Soil Moisture Alert in Zone C",
+      description: "Soil saturation levels crossed threshold",
+      sector: "Zone C",
+      sensor: "Soil Sensor",
+      assigned: "Team Charlie",
+      severity: "critical",
+      status: "in-progress",  // 👈 small
+      actions: ["Monitor continuously", "Prepare evacuation plan"],
+      timestamp: new Date().toISOString(),
+    },
+  ];
+
+  res.json({ alerts });
+});
+
+// ==========================
+// 2D Maps & Risk Analysis Routes
+// ==========================
+
+// Dummy city data (later CSV/DB से भी जोड़ सकते हो)
+const sampleCities = [
+  { city: "Jaipur", lat: 26.9124, lon: 75.7873 },
+  { city: "Delhi", lat: 28.7041, lon: 77.1025 },
+  { city: "Mumbai", lat: 19.076, lon: 72.8777 },
+  { city: "Bengaluru", lat: 12.9716, lon: 77.5946 },
+  { city: "Chennai", lat: 13.0827, lon: 80.2707 },
+];
+
+// Risk generator
+function getRiskFromScore(score) {
+  if (score > 70) return "HIGH";
+  if (score > 40) return "MEDIUM";
+  return "LOW";
+}
+
+// GET /api/cities-risk → सभी cities के लिए risk markers
+app.get("/api/cities-risk", async (req, res) => {
+  try {
+    const results = await Promise.all(
+      sampleCities.map(async (c) => {
+        const weather = await fetchOpenWeather(c.lat, c.lon);
+        const openMeteo = await fetchOpenMeteo(c.lat, c.lon);
+        const seismic = await fetchSeismicByLocation(c.lat, c.lon);
+
+        const risk = computeRiskScore({ weather, openMeteo, seismic });
+
+        return {
+          city: c.city,
+          lat: c.lat,
+          lon: c.lon,
+          risk: risk.level,
+          score: risk.score,
+          updated: nowISO(),
+        };
+      })
+    );
+
+    res.json({ results });
+  } catch (err) {
+    console.error("Error in /api/cities-risk:", err.message);
+    res.status(500).json({ error: "Failed to fetch cities risk" });
+  }
+});
+
+// GET /api/telemetry?lat=..&lon=..
+app.get("/api/telemetry", async (req, res) => {
+  const lat = parseFloat(req.query.lat) || DEFAULT_COORDS.lat;
+  const lon = parseFloat(req.query.lon) || DEFAULT_COORDS.lon;
+
+  try {
+    const weather = await fetchOpenWeather(lat, lon);
+    const openMeteo = await fetchOpenMeteo(lat, lon);
+    const seismic = await fetchSeismicByLocation(lat, lon);
+
+    const risk = computeRiskScore({ weather, openMeteo, seismic });
+
+    res.json({
+      coords: { lat, lon },
+      weather,
+      precipitation_24h_mm: openMeteo?.precipitation_24h_mm ?? null,
+      soil: { moisture_pct: openMeteo?.soil_moisture_pct ?? null },
+      seismic,
+      risk,
+      updated: nowISO(),
+    });
+  } catch (err) {
+    console.error("Error in /api/telemetry:", err.message);
+    res.status(500).json({ error: "Failed to fetch telemetry" });
+  }
+});
+
+// --- OpenMeteo API
 async function fetchOpenMeteo(lat, lon) {
   try {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=precipitation,soil_moisture_0_1cm&past_days=2&timezone=UTC`;
@@ -68,15 +258,18 @@ async function fetchOpenMeteo(lat, lon) {
   }
 }
 
-// --- USGS Seismic feed
-async function fetchSeismicIndia() {
+// --- USGS Seismic API
+async function fetchSeismicByLocation(lat, lon, radiusKm = 200) {
   try {
     const start = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
-    const url = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${start}&minmagnitude=0.5&minlatitude=6&maxlatitude=37&minlongitude=68&maxlongitude=97`;
+    const url = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${start}&latitude=${lat}&longitude=${lon}&maxradiuskm=${radiusKm}&minmagnitude=0.5`;
+
     const r = await axios.get(url, { timeout: 10000 });
     const features = r.data?.features || [];
+
     let strongest = 0;
     let latestEvent = null;
+
     features.forEach((f) => {
       const m = f.properties?.mag;
       if (typeof m === "number" && m > strongest) strongest = m;
@@ -88,18 +281,19 @@ async function fetchSeismicIndia() {
         };
       }
     });
+
     return {
       strongest_mag: strongest || 0,
       count: features.length,
       last_event: latestEvent,
     };
   } catch (e) {
-    console.warn("fetchSeismicIndia error:", e.message);
+    console.warn("fetchSeismicByLocation error:", e.message);
     return { strongest_mag: 0, count: 0, last_event: null };
   }
 }
 
-// --- Risk Score
+// --- Risk Score Calculation
 function computeRiskScore({ weather, openMeteo, seismic }) {
   const windNorm =
     weather?.wind_speed_ms != null ? clamp(weather.wind_speed_ms / 20) : 0;
@@ -117,6 +311,7 @@ function computeRiskScore({ weather, openMeteo, seismic }) {
       : 0;
   const seisNorm =
     seismic?.strongest_mag != null ? clamp(seismic.strongest_mag / 6) : 0;
+
   const score =
     clamp(
       seisNorm * 0.4 +
@@ -127,13 +322,14 @@ function computeRiskScore({ weather, openMeteo, seismic }) {
       0,
       1
     ) * 100;
+
   return {
     score: +score.toFixed(1),
     level: score > 70 ? "HIGH" : score > 45 ? "MEDIUM" : "LOW",
   };
 }
 
-// --- Timeline generator
+// --- Risk Timeline Generator
 function generateRiskTimeline(baseScore) {
   const timeline = [];
   let current = baseScore;
@@ -149,351 +345,365 @@ function generateRiskTimeline(baseScore) {
   return timeline;
 }
 
-// ---------------- Telemetry ----------------
-let currentTelemetry = null;
+// ==================================================
+// 🔹 Personnel Tracking Simulation
+// ==================================================
+let workerId = 1;
 
-async function buildTelemetry(lat = DEFAULT_COORDS.lat, lon = DEFAULT_COORDS.lon) {
-  const [weather, openMeteo, seismic] = await Promise.all([
-    fetchOpenWeather(lat, lon),
-    fetchOpenMeteo(lat, lon),
-    fetchSeismicIndia(),
-  ]);
-  const risk = computeRiskScore({ weather, openMeteo, seismic });
-  return {
-    timestamp: nowISO(),
-    lat,
-    lon,
-    weather,
-    precipitation_24h_mm:
-      openMeteo?.precipitation_24h_mm ?? weather?.rain_1h_mm ?? 0,
-    soil: { moisture_pct: openMeteo?.soil_moisture_pct ?? null },
-    seismic,
-    risk,
-    riskTimeline: generateRiskTimeline(risk.score),
-  };
-}
+// function generateWorkers(count = 10) {
+//   const risks = ["SAFE", "CAUTION", "EMERGENCY"];
+//   const workers = [];
 
-// ---------------- Personnel + Alerts Integration ----------------
-let alertsStore = [];
+//   for (let i = 0; i < count; i++) {
+//     const risk = risks[Math.floor(Math.random() * risks.length)];
+//     workers.push({
+//       id: workerId++, // dynamic worker numbering
+//       name: `Worker ${workerId}`, // 👈 Name replaced with Worker X
+//       x: Math.random() * 100,
+//       y: Math.random() * 100,
+//       risk,
+//       risk_score: Math.floor(Math.random() * 100),
+//       zone: `Zone ${String.fromCharCode(65 + (i % 5))}`,
+//     });
+//   }
 
-// Random worker generator
-function generatePersonnel(count = 12) {
-  const risks = ["SAFE", "CAUTION", "EMERGENCY"];
-  return Array.from({ length: count }).map((_, i) => {
-    const risk = risks[Math.floor(Math.random() * risks.length)];
-    return {
-      id: i + 1,
-      name: `Worker ${i + 1}`,
-      role: i % 3 === 0 ? "Supervisor" : "Operator",
-      zone: (i % 5) + 1,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      risk,
-      risk_score: Math.floor(Math.random() * 100),
-    };
-  });
-}
+//   return workers;
+// }
 
-// ✅ Live personnel API
 app.get("/api/personnel/live", (req, res) => {
   const count = parseInt(req.query.count) || 12;
-  const only = (req.query.only || "").toUpperCase();
+  const only = req.query.only;
 
-  const workers = generatePersonnel(count);
-  let filtered = workers;
-  if (only) filtered = workers.filter((w) => w.risk === only);
+  let workers = generateWorkers(count);
+
+  if (only) {
+    workers = workers.filter((w) => w.risk.toLowerCase() === only.toLowerCase());
+  }
 
   const totals = {
-    safe: filtered.filter((w) => w.risk === "SAFE").length,
-    caution: filtered.filter((w) => w.risk === "CAUTION").length,
-    emergency: filtered.filter((w) => w.risk === "EMERGENCY").length,
+    safe: workers.filter((w) => w.risk === "SAFE").length,
+    caution: workers.filter((w) => w.risk === "CAUTION").length,
+    emergency: workers.filter((w) => w.risk === "EMERGENCY").length,
   };
 
-  alertsStore = workers
-    .filter((w) => w.risk === "CAUTION" || w.risk === "EMERGENCY")
-    .map((w) => ({
-      id: `ALT-W-${w.id}`,
-      title: `${w.risk} detected for ${w.name}`,
-      severity: w.risk === "EMERGENCY" ? "critical" : "warning",
-      status: "active",
-      description: `${w.name} in Zone ${w.zone} at risk level: ${w.risk}`,
-      sector: `Sector ${w.zone}`,
-      sensor: "Personnel Tracker",
-      assigned: "Supervisor",
-      actions:
-        w.risk === "EMERGENCY"
-          ? ["Evacuate worker", "Send medical team", "Alert supervisor"]
-          : ["Inspect worker", "Advise caution", "Log activity"],
-      timestamp: new Date().toLocaleString(),
-    }));
-
   res.json({
-    updated: new Date().toISOString(),
-    workers: filtered,
+    updated: nowISO(),
+    workers,
     totals,
   });
 });
 
-// ✅ Recent personnel alerts
 app.get("/api/personnel/alerts", (req, res) => {
-  res.json({ alerts: alertsStore });
-});
-
-// ✅ Combined system alerts
-app.get("/api/alerts", (req, res) => {
-  const staticAlerts = [
-    {
-      id: "ALT-001",
-      title: "Crackmeter Threshold Exceeded",
-      severity: "critical",
+  const alerts = generateWorkers(5) // 5 random alerts
+    .filter((w) => w.risk === "CAUTION" || w.risk === "EMERGENCY")
+    .map((w) => ({
+      title: `Status Alert: Worker ${w.id}`,
+      sector: w.zone,
+      timestamp: nowISO(),
+      severity: w.risk === "EMERGENCY" ? "critical" : "warning",
       status: "active",
-      description:
-        "Crackmeter CM-07 in Sector 7 shows 4.2mm displacement, exceeding threshold",
-      sector: "Sector 7",
-      sensor: "Crackmeter CM-07",
-      assigned: "John Smith",
-      actions: ["Evacuate area", "Inspect slope", "Contact supervisor"],
-      timestamp: new Date().toLocaleString(),
-    },
-  ];
-  res.json({ alerts: [...staticAlerts, ...alertsStore] });
-});
-// ✅ Test SMS endpoint
-app.get("/api/test-sms", async (req, res) => {
-  try {
-    const client = require("twilio")(
-      process.env.TWILIO_ACCOUNT_SID,
-      process.env.TWILIO_AUTH_TOKEN
-    );
+    }));
 
-    const msg = await client.messages.create({
-      body: "🚨 Test Alert: This is a test SOS message from Rockfall System",
-      from: process.env.TWILIO_PHONE,
-      to: process.env.ALERT_PHONE,
-    });
-
-    res.json({ ok: true, sid: msg.sid });
-  } catch (e) {
-    console.error("SMS test error:", e.message);
-    res.status(500).json({ ok: false, error: e.message });
-  }
+  res.json({ alerts });
 });
 
-// ---------------- Endpoints ----------------
-app.get("/api/telemetry", async (req, res) => {
-  try {
-    const snapshot = await buildTelemetry();
-    currentTelemetry = snapshot;
-    res.json(snapshot);
-  } catch (e) {
-    res.status(500).json({ error: "failed to fetch telemetry" });
-  }
-});
+// ==================================================
+// 🔹 Risk API
+// ==================================================
+app.get("/api/risk", async (req, res) => {
+  const lat = parseFloat(req.query.lat) || DEFAULT_COORDS.lat;
+  const lon = parseFloat(req.query.lon) || DEFAULT_COORDS.lon;
 
-app.get("/api/predictive", async (req, res) => {
   try {
-    if (!currentTelemetry) {
-      currentTelemetry = await buildTelemetry();
-    }
-    const snapshot = currentTelemetry;
+    const weather = await fetchOpenWeather(lat, lon);
+    const openMeteo = await fetchOpenMeteo(lat, lon);
+    const seismic = await fetchSeismicByLocation(lat, lon);
+
+    const risk = computeRiskScore({ weather, openMeteo, seismic });
+    const timeline = generateRiskTimeline(risk.score);
 
     res.json({
-      probability: snapshot.risk?.score || 0,
-      predictedEventWindow:
-        snapshot.risk?.level === "HIGH"
-          ? "48–72 hours"
-          : snapshot.risk?.level === "MEDIUM"
-          ? "72–96 hours"
-          : "Low risk – No event expected",
-      timeline: snapshot.riskTimeline || [],
-      rainfallForecast: [
-        { time: "Day 1", rainfall: Math.round(Math.random() * 20) },
-        { time: "Day 2", rainfall: Math.round(Math.random() * 20) },
-        { time: "Day 3", rainfall: Math.round(Math.random() * 20) },
-        { time: "Day 4", rainfall: Math.round(Math.random() * 20) },
-        { time: "Day 5", rainfall: Math.round(Math.random() * 20) },
-      ],
-      seismicData: [
-        { zone: "Zone A", mag: snapshot.seismic?.strongest_mag || 2.5 },
-        { zone: "Zone B", mag: Math.random() * 5 },
-        { zone: "Zone C", mag: Math.random() * 5 },
-        { zone: "Zone D", mag: Math.random() * 5 },
-      ],
+      coords: { lat, lon },
+      weather,
+      openMeteo,
+      seismic,
+      risk,
+      timeline,
+      fetched_at: nowISO(),
     });
-  } catch (e) {
-    console.error("Error in /api/predictive:", e.message);
-    res.status(500).json({ error: "failed to build predictive analytics" });
+  } catch (err) {
+    console.error("Error in /api/risk:", err.message);
+    res.status(500).json({ error: "Failed to compute risk" });
   }
 });
 
-app.get("/api/health", (req, res) => res.json({ ok: true, ts: nowISO() }));
+// ==================================================
+// 🔹 ML Prediction API (Python से call करके)
+// ==================================================
+app.post("/api/predict", (req, res) => {
+  const { rainfall, temperature, slope, seismic } = req.body;
 
-// ✅ Risk factors endpoint
-app.get("/api/risk-factors", async (req, res) => {
-  try {
-    const snapshot = await buildTelemetry();
+  const py = spawn("python", [
+    "predict.py",
+    rainfall,
+    temperature,
+    slope,
+    seismic,
+  ]);
 
-    const factors = [
-      {
-        factor: "Rainfall",
-        impact:
-          snapshot.precipitation_24h_mm != null
-            ? Math.round(snapshot.precipitation_24h_mm)
-            : 0,
-      },
-      {
-        factor: "Soil Moisture",
-        impact:
-          snapshot.soil?.moisture_pct != null ? snapshot.soil.moisture_pct : 0,
-      },
-      {
-        factor: "Seismic Activity",
-        impact:
-          snapshot.seismic?.strongest_mag != null
-            ? Math.round(snapshot.seismic.strongest_mag * 10)
-            : 0,
-      },
-      {
-        factor: "Wind Speed",
-        impact:
-          snapshot.weather?.wind_speed_ms != null
-            ? Math.round(snapshot.weather.wind_speed_ms * 5)
-            : 0,
-      },
-      {
-        factor: "Temperature",
-        impact:
-          snapshot.weather?.temperature_c != null
-            ? Math.round(snapshot.weather.temperature_c)
-            : 0,
-      },
-    ];
+  let dataString = "";
 
-    res.json({ updated: nowISO(), factors });
-  } catch (e) {
-    console.error("risk-factors error:", e.message);
-    res.status(500).json({ error: "failed to fetch risk factors" });
-  }
+  py.stdout.on("data", (data) => {
+    dataString += data.toString();
+  });
+
+  py.on("close", (code) => {
+    try {
+      const result = JSON.parse(dataString.replace(/'/g, '"'));
+      res.json(result);
+    } catch (err) {
+      console.error("Prediction error:", err.message);
+      res.status(500).json({ error: "Prediction failed" });
+    }
+  });
 });
 
-// ✅ NEW: Risk Trend (Last 7 Days)
-app.get("/api/risk-trend", async (req, res) => {
-  try {
-    const snapshot = await buildTelemetry();
-    const baseScore = snapshot?.risk?.score || 30;
-    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+// ==================================================
+// 🔹 Test Route (GET) → Browser से check करने के लिए
+// ==================================================
+app.get("/api/predict/test", (req, res) => {
+  const py = spawn("python", [
+    "predict.py",
+    50,   // rainfall (dummy)
+    28,   // temperature (dummy)
+    42,   // slope (dummy)
+    2.0   // seismic (dummy)
+  ]);
 
-    const trend = days.map((d, i) => {
-      const variation = (Math.random() * 0.2 - 0.1) * baseScore;
-      return {
-        day: d,
-        risk: Math.max(0, Math.round(baseScore + variation + i * 2 - 6)),
-      };
-    });
+  let dataString = "";
 
-    res.json(trend);
-  } catch (e) {
-    console.error("risk-trend error:", e.message);
-    res.status(500).json({ error: "failed to fetch risk trend" });
-  }
+  py.stdout.on("data", (data) => {
+    dataString += data.toString();
+  });
+
+  py.on("close", (code) => {
+    try {
+      const result = JSON.parse(dataString.replace(/'/g, '"'));
+      res.json(result);
+    } catch (err) {
+      console.error("Prediction error:", err.message);
+      res.status(500).json({ error: "Prediction failed" });
+    }
+  });
 });
 
-// ✅ NEW: Cities Risk endpoint
-app.get("/api/cities-risk", async (req, res) => {
+// ==================================================
+// 🔹 AI Assistant API (Overview.js ke liye)
+// ==================================================
+// ==================================================
+// 🔹 AI Assistant API (Overview.js ke liye)
+// ==================================================
+// ==================================================
+// 🔹 AI Assistant API (Overview.js ke liye)
+// ==================================================
+app.post("/api/assistant", async (req, res) => {
+  const { query, history } = req.body;
+  const lat = DEFAULT_COORDS.lat;
+  const lon = DEFAULT_COORDS.lon;
+
   try {
-    const cities = [
-      { city: "Jaipur", lat: 26.9124, lon: 75.7873 },
-      { city: "Mumbai", lat: 19.0760, lon: 72.8777 },
-      { city: "Nagpur", lat: 21.1458, lon: 79.0882 },
-      { city: "Delhi", lat: 28.7041, lon: 77.1025 },
-      { city: "Kolkata", lat: 22.5726, lon: 88.3639 },
-    ];
+    // Step 1: Live telemetry data lao
+    const weather = await fetchOpenWeather(lat, lon);
+    const openMeteo = await fetchOpenMeteo(lat, lon);
+    const seismic = await fetchSeismicByLocation(lat, lon);
+    const risk = computeRiskScore({ weather, openMeteo, seismic });
 
-    const results = [];
+    let answer = "";
+    const q = query.toLowerCase();
 
-    for (const c of cities) {
-      const telemetry = await buildTelemetry(c.lat, c.lon);
-      results.push({
-        city: c.city,
-        lat: c.lat,
-        lon: c.lon,
-        risk: telemetry.risk?.level || "UNKNOWN",
-        score: telemetry.risk?.score || 0,
-        updated: nowISO(),
-      });
+    // =========================
+    // Smart QnA categories
+    // =========================
+
+    // --- Risk & Prediction
+    if (q.includes("risk")) {
+      answer = `📊 Current risk level is **${risk.level}** with a risk score of ${risk.score}%.`;
+    } 
+    else if (q.includes("prediction") || q.includes("forecast")) {
+      answer = `🔮 AI predicts risk trend for next 48–72 hours is around ${risk.score}%, category **${risk.level}**.`;
     }
 
-    res.json({ results });
-  } catch (e) {
-    console.error("cities-risk error:", e.message);
-    res.status(500).json({ error: "failed to fetch cities risk" });
+    // --- Weather
+    else if (q.includes("rain") || q.includes("rainfall")) {
+      answer = `🌧 Rainfall in last 24h: ${openMeteo?.precipitation_24h_mm ?? "—"} mm.`;
+    } 
+    else if (q.includes("temperature") || q.includes("heat") || q.includes("cold")) {
+      answer = `🌡 Current temperature: ${weather?.temperature_c ?? "—"} °C.`;
+    } 
+    else if (q.includes("humidity")) {
+      answer = `💧 Current humidity: ${weather?.humidity_pct ?? "—"}%.`;
+    } 
+    else if (q.includes("wind")) {
+      answer = `🍃 Wind speed: ${weather?.wind_speed_ms ?? "—"} m/s.`;
+    } 
+    else if (q.includes("soil")) {
+      answer = `🌱 Soil moisture: ${openMeteo?.soil_moisture_pct ?? "—"}%.`;
+    }
+
+    // --- Seismic
+    else if (q.includes("seismic") || q.includes("earthquake") || q.includes("tremor")) {
+      answer = `🌍 Seismic activity: strongest magnitude in last 24h = ${seismic?.strongest_mag ?? "0"} (events: ${seismic?.count ?? 0}).`;
+    }
+
+    // --- Alerts / Workers
+    else if (q.includes("alert")) {
+      answer = `🚨 Currently there are ${alerts.length} active alerts in different zones.`;
+    }
+    else if (q.includes("worker") || q.includes("personnel")) {
+      answer = "👷 Workers are being monitored live with zones and risk scores. Unsafe workers trigger instant alerts.";
+    }
+
+    // --- Safety & Prevention
+    // --- Safety & Prevention (risk based)
+else if (q.includes("safety") || q.includes("prevent") || q.includes("measure")) {
+    let risk = telemetry?.riskScore || 0; // <-- risk score jo tum fetch kar rahi ho
+    let level = "Low";
+
+    if (risk >= 0 && risk <= 45) {
+        level = "Low";
+        answer = `🟢 Current Risk Level: LOW (${risk}). Preventive measures: regular slope inspections, basic monitoring, and maintaining proper drainage.`;
+    } else if (risk > 45 && risk <= 70) {
+        level = "Medium";
+        answer = `🟠 Current Risk Level: MEDIUM (${risk}). Preventive measures: increase monitoring frequency, restrict worker access to high-risk zones, and ensure emergency drills are prepared.`;
+    } else if (risk > 70) {
+        level = "High";
+        answer = `🔴 Current Risk Level: HIGH (${risk}). Preventive measures: immediate evacuation of workers, deploy emergency response teams, and suspend mining operations until safety is restored.`;
+    }
+}
+
+    // --- System details
+    else if (q.includes("system") || q.includes("project") || q.includes("dashboard")) {
+      answer = "⚙ This system integrates weather, soil, seismic and AI prediction models into a real-time Mine Safety Dashboard.";
+    }
+    else if (q.includes("future") || q.includes("improve") || q.includes("work")) {
+      answer = "📌 Future work includes: adding more sensors, real drone integration, historical rockfall dataset learning, and advanced predictive AI models.";
+    }
+
+    // --- Greetings & small talk
+    else if (q.includes("hello") || q.includes("hi")) {
+      answer = "👋 Hello! I am your Mine Safety Assistant. Ask me about risk, rainfall, weather, soil, seismic activity, alerts, or preventive measures.";
+    }
+    else if (q.includes("who are you")) {
+      answer = "🤖 I am Mine Safety AI Assistant, built to support your project with real-time risk answers.";
+    }
+    else if (q.includes("bye")) {
+      answer = "👋 Goodbye! Stay safe and keep monitoring the mine risks.";
+    }
+    else if (q.includes("thanks") || q.includes("thank you")) {
+      answer = "🙏 You're welcome! Happy to assist.";
+    }
+
+    // --- Fallback
+    else {
+      answer = `🤖 I couldn’t find exact data for "${query}". But I can tell you about **risk, rainfall, weather, soil, seismic, alerts, workers, safety, and preventive measures**.`;
+    }
+
+    res.json({ answer });
+  } catch (err) {
+    console.error("AI Assistant error:", err.message);
+    res.status(500).json({ answer: "⚠ AI Assistant failed to fetch data." });
   }
 });
+// ==================================================
+// 🔹 WebSocket Setup for Live Alerts
+// ==================================================
+const server = http.createServer(app);
+// 👇 yeh change karo
+const wss = new WebSocket.Server({ server, path: "/ws" });
 
-// ✅ NEW: Synthetic Sensor Data endpoint
-app.get("/api/sensors", (req, res) => {
-  const sensors = {
-    tiltmeters: {
-      sector: "Sector 7 - North Slope",
-      current: +(Math.random() * 5).toFixed(2),
-      threshold: 5.0,
-      unit: "°",
-    },
-    piezometers: {
-      sector: "Sector 5 - Groundwater",
-      current: +(12 + Math.random() * 8).toFixed(2),
-      threshold: 18.0,
-      unit: "m",
-    },
-    vibrations: {
-      sector: "Sector 3 - Blast Zone",
-      current: +(Math.random() * 2).toFixed(2),
-      threshold: 2.0,
-      unit: " mm/s",
-    },
-    crackmeters: {
-      sector: "Sector 7 - Critical Zone",
-      current: +(Math.random() * 6).toFixed(2),
-      threshold: 3.0,
-      unit: " mm",
-    },
-    weather: {
-      sector: "Central Platform",
-      temperature: 10 + Math.floor(Math.random() * 20),
-      humidity: 40 + Math.floor(Math.random() * 50),
-    },
-    gnss: {
-      sector: "Mine Perimeter",
-      current: +(Math.random() * 5).toFixed(2),
-      threshold: 5.0,
-      unit: " cm",
-    },
+// 👇 aur upar add kar do ek simple GET /
+app.get("/", (req, res) => {
+  res.send("✅ Backend running, WebSocket path /ws");
+});
+// Client connections
+wss.on("connection", (ws) => {
+  console.log("🔌 New WebSocket client connected");
+
+  ws.send(JSON.stringify({ msg: "Connected to RockGuard WS server" }));
+
+  ws.on("close", () => {
+    console.log("❌ WebSocket client disconnected");
+  });
+});
+// Function to broadcast alerts
+function broadcastAlert(alert) {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(alert));
+    }
+  });
+}
+// Example: generate & broadcast random alert every 30s
+setInterval(() => {
+  const alert = {
+    id: "AL-" + Math.floor(Math.random() * 1000),
+    title: "Random Test Alert",
+    description: "Auto-generated alert for demo",
+    sector: "Zone " + String.fromCharCode(65 + Math.floor(Math.random() * 5)),
+    sensor: "Test Sensor",
+    assigned: "Demo Team",
+    severity: ["critical", "warning", "info"][Math.floor(Math.random() * 3)],
+    status: ["active", "in-progress", "resolved"][Math.floor(Math.random() * 3)],
+    actions: ["Check logs", "Inspect site", "Report status"],
+    timestamp: new Date().toISOString(),
   };
 
-  res.json({ updated: nowISO(), sensors });
+  console.log("📢 Broadcasting alert:", alert.id);
+  broadcastAlert(alert);
+}, 30000);
+
+// ==================================================
+
+// ✅ Root route for judges (Backend Home Page)
+app.get("/", (req, res) => {
+  res.send(`
+    <html>
+      <head>
+        <title>MineMinds Backend API</title>
+        <style>
+          body { font-family: Arial, sans-serif; margin: 20px; background: #f9fafb; color: #111827; }
+          h1 { color: #2563eb; }
+          ul { line-height: 1.8; }
+          li { margin-bottom: 6px; }
+          .ok { color: green; font-weight: bold; }
+        </style>
+      </head>
+      <body>
+        <h1>🚀 MineMinds Backend API</h1>
+        <p class="ok">✅ Backend is running successfully</p>
+        <h3>Available Endpoints:</h3>
+        <ul>
+          <li><a href="/api/personnel/live">/api/personnel/live</a></li>
+          <li><a href="/api/personnel/alerts">/api/personnel/alerts</a></li>
+          <li><a href="/api/risk">/api/risk</a></li>
+          <li><a href="/api/predict">/api/predict</a></li>
+          <li><a href="/api/assistant">/api/assistant</a></li>
+          <li><a href="/api/alerts">/api/alerts</a></li>
+        </ul>
+      </body>
+    </html>
+  `);
 });
-
-// ---------------- WebSocket ----------------
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
-
-wss.on("connection", (ws) => {
-  console.log("🔗 WebSocket client connected");
-  ws.send(JSON.stringify({ ok: true, msg: "Welcome WebSocket client!" }));
-});
-
-// ---------------- Start Server ----------------
+// ==================================================
 server.listen(PORT, () => {
-  console.log(`✅ Realtime telemetry server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server + WS running on http://localhost:${PORT}`);
+  console.log(`✅ Available endpoints:
+    /api/personnel/live
+    /api/personnel/alerts
+    /api/risk
+    /api/predict
+    /api/assistant
+    /api/alerts
+  `);
 });
-
-server.on("error", (err) => {
-  if (err.code === "EADDRINUSE") {
-    console.error(
-      `❌ Port ${PORT} already in use. Please stop other process or change PORT.`
-    );
-    process.exit(1);
-  } else {
-    throw err;
-  }
-});
+  

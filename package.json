@@ -4,6 +4,9 @@
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "lucide-react": "^0.544.0",
+    "papaparse": "^5.5.3",
+    "react-circular-progressbar": "^2.2.0",
+    "react-d3-speedometer": "^3.1.1",
     "react-router-dom": "^7.9.1",
     "socket.io": "^4.8.1"
   },
