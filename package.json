@@ -18,8 +18,5 @@
     "nodemon": "^3.1.10",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.13"
-  },
-  "scripts": {
-    "build": "cd rockfall-dashboard && npm install && npm run build"
   }
 }
