@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: rockfall-frontend
+    env: node
+    rootDir: rockfall-dashboard
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    publishPath: build
